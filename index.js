@@ -18,6 +18,9 @@ const io = new Server(server, {
 
 mongoose.connect("mongodb+srv://arvindgpta786:parinahi1@cluster3.9zrvtt9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster3");
 
+// Allow CORS for all routes
+app.use(cors());
+
 app.get("/", (req, res) => {
   res.send("Server is running");
 });
@@ -26,8 +29,6 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Allow CORS for all routes
-app.use(cors());
 
 // Example of a protected route
 app.get('/protected-route', AuthMiddleware, (req, res) => {
